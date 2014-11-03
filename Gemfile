@@ -52,3 +52,16 @@ group :development, :test do
   gem "rspec-rails"
   gem "jettywrapper"
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem "faker"
+  gem "capybara"
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+end
