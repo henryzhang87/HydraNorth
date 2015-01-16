@@ -58,7 +58,7 @@
       <%= f.label :rights, '<span class="required-field">*</span> Rights'.html_safe, class: "control-label" %>
       <%= help_icon_modal('rightsModal') %>
       <div id="additional_rights_clone">
-        <%= f.select "rights", options_for_select(Sufia::Engine::config.cc_licenses), {:include_blank => 'Please select a license'}, required: true %>
+        <%= f.select "rights", options_for_select(Sufia.config.cc_licenses), {:include_blank => 'Please select a license'}, required: true %>
         <button class="adder btn" name="additional_rights" id="additional_rights_submit"><span aria-hidden="true"><i class="glyphicon glyphicon-plus"></i></span><span class="sr-only"><%= t('sufia.batch.metadata.add_another_rights') %></span></button>
         <%= render partial: "generic_files/rights_modal" %>
       </div>
