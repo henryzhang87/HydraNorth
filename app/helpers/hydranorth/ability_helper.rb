@@ -1,5 +1,6 @@
-module ApplicationHelper
-  def visibility_options(variant)
+module Hydranorth
+  module AbilityHelper
+    def visibility_options(variant)
       options = [
           ['Open Access',Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC],
           [t('sufia.institution_name'),Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED],
@@ -31,4 +32,5 @@ module ApplicationHelper
           content_tag :span, value, class:"label label-info"
       end
     end
+  end
 end
