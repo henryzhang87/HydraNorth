@@ -10,8 +10,6 @@ module Hydranorth
 
     protected
     def actor
-      logger.debug "Attributes: #{attributes.inspect}"
-      logger.debug "Attributes.visibility: #{attributes[:visibility].inspect}"
       @actor ||= Hydranorth::GenericFile::Actor.new(@generic_file, current_user, attributes )
    end
     

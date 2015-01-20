@@ -29,7 +29,6 @@ module Hydranorth
     # If user has set visibility to embargo, interprets the relevant information and applies it
     # Returns false if there are any errors and sets an error on the curation_concern
     def interpret_embargo_visibility
-      Rails.logger.debug "attributes_visibility from manage_embargo_actor: #{attributes[:visibility].inspect}"
       if attributes[:visibility] != Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_EMBARGO
         # clear embargo_release_date even if it isn't being used. Otherwise it sets the embargo_date
         # even though they didn't select embargo on the form.
@@ -41,13 +40,9 @@ module Hydranorth
         generic_file.errors.add(:visibility, 'When setting visibility to "embargo" you must also specify embargo release date.')
         false
       else
-        Rails.logger.info "get to apply embargoes"
         attributes.delete(:visibility)
-        Rails.logger.debug "attributes after delete #{attributes[:visibility].inspect}"
-        Rails.logger.debug "under_embargo? #{generic_file.under_embargo?}"
         generic_file.apply_embargo(attributes[:embargo_release_date], attributes.delete(:visibility_during_embargo),
                   attributes.delete(:visibility_after_embargo))
-        Rails.logger.debug "under_embargo? #{generic_file.under_embargo?}"
         generic_file.save 
         true
       end
