@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Adds a few additional behaviors into the application controller 
-   include Blacklight::Controller  
-# Adds Sufia behaviors into the application controller 
+  include Blacklight::Controller
+  # Adds Sufia behaviors into the application controller 
   include Sufia::Controller
   helper :all
 
