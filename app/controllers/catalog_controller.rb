@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("tag", :facetable), label: "Keyword", limit: 5
     config.add_facet_field solr_name("subject", :facetable), label: "Subject", limit: 5
     config.add_facet_field solr_name("language", :facetable), label: "Language", limit: 5
-    config.add_facet_field solr_name("based_near", :facetable), label: "Location", limit: 5
+    config.add_facet_field solr_name("spatial", :facetable), label: "Location", limit: 5
     config.add_facet_field solr_name("publisher", :facetable), label: "Publisher", limit: 5
     config.add_facet_field solr_name("file_format", :facetable), label: "File Format", limit: 5
 
@@ -71,11 +71,14 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("description", :stored_searchable), label: "Description", itemprop: 'description'
     config.add_index_field solr_name("tag", :stored_searchable), label: "Keyword", itemprop: 'keywords'
     config.add_index_field solr_name("subject", :stored_searchable), label: "Subject", itemprop: 'about'
+    config.add_index_field solr_name("spatial", :stored_searchable), label: "Subject-Spatial", itemprop: 'subjectSpatial'
+    config.add_index_field solr_name("temporal", :stored_searchable), label: "Subject-Temporal", itemprop: 'subjectTemporal'
     config.add_index_field solr_name("creator", :stored_searchable), label: "Creator", itemprop: 'creator'
     config.add_index_field solr_name("contributor", :stored_searchable), label: "Contributor", itemprop: 'contributor'
-    config.add_index_field solr_name("publisher", :stored_searchable), label: "Publisher", itemprop: 'publisher'
-    config.add_index_field solr_name("based_near", :stored_searchable), label: "Location", itemprop: 'contentLocation'
     config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage'
+    config.add_index_field solr_name("technical_report_id", :stored_searchable), label: "Technical Report ID", itemprop: 't
+echnical_report_id'
+    config.add_index_field solr_name("ser_id", :stored_searchable), label: "SER Number", itemprop: 'ser_id'
     config.add_index_field solr_name("date_uploaded", :stored_searchable), label: "Date Uploaded", itemprop: 'datePublished'
     config.add_index_field solr_name("date_modified", :stored_searchable), label: "Date Modified", itemprop: 'dateModified'
     config.add_index_field solr_name("date_created", :stored_searchable), label: "Date Created", itemprop: 'dateCreated'
@@ -90,11 +93,13 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name("description", :stored_searchable), label: "Description"
     config.add_show_field solr_name("tag", :stored_searchable), label: "Keyword"
     config.add_show_field solr_name("subject", :stored_searchable), label: "Subject"
+    config.add_show_field solr_name("spatial", :stored_searchable), label: "Subject-Spatial"
+    config.add_show_field solr_name("temporal", :stored_searchable), label: "Subject-Temporal"
     config.add_show_field solr_name("creator", :stored_searchable), label: "Creator"
     config.add_show_field solr_name("contributor", :stored_searchable), label: "Contributor"
-    config.add_show_field solr_name("publisher", :stored_searchable), label: "Publisher"
-    config.add_show_field solr_name("based_near", :stored_searchable), label: "Location"
     config.add_show_field solr_name("language", :stored_searchable), label: "Language"
+    config.add_show_field solr_name("technical_report_id", :stored_searchable), label: "Technical Report ID"
+    config.add_show_field solr_name("ser_id", :stored_searchable), label: "SER Number"
     config.add_show_field solr_name("date_uploaded", :stored_searchable), label: "Date Uploaded"
     config.add_show_field solr_name("date_modified", :stored_searchable), label: "Date Modified"
     config.add_show_field solr_name("date_created", :stored_searchable), label: "Date Created"

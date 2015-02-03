@@ -1,0 +1,7 @@
+<% record.spatial.each do |sp| %>
+  <span itemprop="subjectSpatial" itemscope itemtype="http://schema.org/Place">
+    <span itemprop="name"><%= link_to_facet(sp, Solrizer.solr_name("spatial", :facetable)) %></span>
+  </span>
+  <br />
+<% end %>
+

@@ -8,14 +8,34 @@ module Hydranorth
     include Sufia::FilesControllerBehavior
 
     protected
-   def actor
+    def actor
       @actor ||= Hydranorth::GenericFile::Actor.new(@generic_file, current_user, attributes)
-   end
+    end
     
     def attributes
       attributes = params
     end
-
+    
+    def presenter
+      case @generic_file[:resource_type]
+      when "Computing Science Technical Report"
+        Hydranorth::CstrPresenter.new(@generic_file)
+      else
+        Hydranorth::GenericFilePresenter.new(@generic_file)
+      end
+    end 
+    def edit_form
+      case @generic_file[:resource_type]
+      when "Computing Science Technical Report"
+        Hydranorth::Forms::CstrEditForm.new(@generic_file)
+      else 
+        Hydranorth::Forms::GenericFileEditForm.new(@generic_file)
+      end
+    end
+    def update_metadata
+      file_attributes = Hydranorth::Forms::GenericFileEditForm.model_attributes(params[:generic_file])
+      actor.update_metadata(file_attributes, params[:visibility])
+    end
 
   end
 

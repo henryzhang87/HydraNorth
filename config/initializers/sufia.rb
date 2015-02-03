@@ -29,7 +29,8 @@ Sufia.config do |config|
 
   config.resource_types = {
     "Book" => "Book",
-    "Book Chapter" => "Book Chapter", 
+    "Book Chapter" => "Book Chapter",
+    "Computing Science Technical Report" => "Computing Science Technical Report",
     "Conference\/Workshop Poster" => "Conference\/Workshop Poster",
     "Conference\/Workshop Presentation" => "Conference\/Workshop Presentation",
     "Image" => "Image",
@@ -40,32 +41,26 @@ Sufia.config do |config|
     "Report" => "Report",
     "Research Material" => "Research Material",
     "Review" => "Review",
+    "Structural Engineering Report" => "Structural Engineering Report",
     "Thesis" => "Thesis",
-    "Video" => "Video",
-    "Other" => "Other",
   }
 
   config.resource_types_to_schema = {
-    "Article" => "http://schema.org/Article",
-    "Audio" => "http://schema.org/AudioObject",
     "Book" => "http://schema.org/Book",
-    "Capstone Project" => "http://schema.org/CreativeWork",
-    "Conference Proceeding" => "http://schema.org/ScholarlyArticle",
-    "Dataset" => "http://schema.org/Dataset",
-    "Dissertation" => "http://schema.org/ScholarlyArticle",
+    "Book Chapter" => "http://schema.org/Book",
+    "Computing Science Technical Report" => "http://schema.org/CreativeWork",
+    "Conference\/Workshop Poster" => "http://schema.org/CreativeWork",
+    "Conference\/Workshop Presentation" => "http://schema.org/CreativeWork",
     "Image" => "http://schema.org/ImageObject",
-    "Journal" => "http://schema.org/CreativeWork",
+    "Journal Article (Draft-Submitted)" => "http://schema.org/Article",
+    "Journal Article (Published)" => "http://schema.org/Article",
+    "Learning Object" => "http://schema.org/CreativeWork",
     "Map or Cartographic Material" => "http://schema.org/Map",
-    "Masters Thesis" => "http://schema.org/ScholarlyArticle",
-    "Part of Book" => "http://schema.org/Book",
-    "Poster" => "http://schema.org/CreativeWork",
-    "Presentation" => "http://schema.org/CreativeWork",
-    "Project" => "http://schema.org/CreativeWork",
     "Report" => "http://schema.org/CreativeWork",
-    "Research Paper" => "http://schema.org/ScholarlyArticle",
-    "Software or Program Code" => "http://schema.org/Code",
-    "Video" => "http://schema.org/VideoObject",
-    "Other" => "http://schema.org/CreativeWork",
+    "Research Material" => "http://schema.org/CreativeWork",
+    "Review" => "http://schema.org/Review",
+    "Structural Engineering Report" => "http://schema.org/CreativeWork",
+    "Thesis" => "http://schema.org/CreativeWork",
   }
 
   config.permission_levels = {
@@ -102,6 +97,7 @@ Sufia.config do |config|
 
   # Specify the path to the file characterization tool:
   # config.fits_path = "fits.sh"
+   config.fits_path = "/usr/local/bin/fits-0.6.2/fits.sh"
 
   # Specify how many seconds back from the current time that we should show by default of the user's activity on the user's dashboard
   # config.activity_to_show_default_seconds_since_now = 24*60*60
