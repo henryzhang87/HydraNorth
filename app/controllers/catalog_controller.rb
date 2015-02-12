@@ -56,8 +56,8 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name("tag", :facetable), label: "Keyword", limit: 5
     config.add_facet_field solr_name("subject", :facetable), label: "Subject", limit: 5
     config.add_facet_field solr_name("language", :facetable), label: "Language", limit: 5
-    config.add_facet_field solr_name("spatial", :facetable), label: "Location", limit: 5
-    config.add_facet_field solr_name("publisher", :facetable), label: "Publisher", limit: 5
+    config.add_facet_field solr_name("spatial", :facetable), label: "Subject-Spatial", limit: 5
+    config.add_facet_field solr_name("temporal", :facetable), label: "Subject-Temporal", limit: 5
     config.add_facet_field solr_name("file_format", :facetable), label: "File Format", limit: 5
 
     # Have BL send all facet field names to Solr, which has been the default
@@ -71,14 +71,13 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name("description", :stored_searchable), label: "Description", itemprop: 'description'
     config.add_index_field solr_name("tag", :stored_searchable), label: "Keyword", itemprop: 'keywords'
     config.add_index_field solr_name("subject", :stored_searchable), label: "Subject", itemprop: 'about'
-    config.add_index_field solr_name("spatial", :stored_searchable), label: "Subject-Spatial", itemprop: 'subjectSpatial'
-    config.add_index_field solr_name("temporal", :stored_searchable), label: "Subject-Temporal", itemprop: 'subjectTemporal'
+    config.add_index_field solr_name("spatial", :stored_searchable), label: "Subject-Spatial", itemprop: 'spatial'
+    config.add_index_field solr_name("temporal", :stored_searchable), label: "Subject-Temporal", itemprop: 'temporal'
     config.add_index_field solr_name("creator", :stored_searchable), label: "Creator", itemprop: 'creator'
     config.add_index_field solr_name("contributor", :stored_searchable), label: "Contributor", itemprop: 'contributor'
     config.add_index_field solr_name("language", :stored_searchable), label: "Language", itemprop: 'inLanguage'
-    config.add_index_field solr_name("technical_report_id", :stored_searchable), label: "Technical Report ID", itemprop: 't
-echnical_report_id'
-    config.add_index_field solr_name("ser_id", :stored_searchable), label: "SER Number", itemprop: 'ser_id'
+    config.add_index_field solr_name("trid", :stored_searchable), label: "Computing Sciences Technical Report ID", itemprop: 'trid'
+    config.add_index_field solr_name("ser", :stored_searchable), label: "Structural Engineering Report ID", itemprop: 'ser' 
     config.add_index_field solr_name("date_uploaded", :stored_searchable), label: "Date Uploaded", itemprop: 'datePublished'
     config.add_index_field solr_name("date_modified", :stored_searchable), label: "Date Modified", itemprop: 'dateModified'
     config.add_index_field solr_name("date_created", :stored_searchable), label: "Date Created", itemprop: 'dateCreated'
@@ -98,15 +97,14 @@ echnical_report_id'
     config.add_show_field solr_name("creator", :stored_searchable), label: "Creator"
     config.add_show_field solr_name("contributor", :stored_searchable), label: "Contributor"
     config.add_show_field solr_name("language", :stored_searchable), label: "Language"
-    config.add_show_field solr_name("technical_report_id", :stored_searchable), label: "Technical Report ID"
-    config.add_show_field solr_name("ser_id", :stored_searchable), label: "SER Number"
+    config.add_show_field solr_name("trid", :stored_searchable), label: "Computing Sciences Technical Report ID"
+    config.add_show_field solr_name("ser", :stored_searchable), label: "Structural Engineering Report Number"
     config.add_show_field solr_name("date_uploaded", :stored_searchable), label: "Date Uploaded"
     config.add_show_field solr_name("date_modified", :stored_searchable), label: "Date Modified"
     config.add_show_field solr_name("date_created", :stored_searchable), label: "Date Created"
     config.add_show_field solr_name("rights", :stored_searchable), label: "Rights"
     config.add_show_field solr_name("resource_type", :stored_searchable), label: "Resource Type"
     config.add_show_field solr_name("format", :stored_searchable), label: "File Format"
-    config.add_show_field solr_name("identifier", :stored_searchable), label: "Identifier"
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -137,7 +135,7 @@ echnical_report_id'
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
-    # creator, title, description, publisher, date_created,
+    # creator, title, description, date_created,
     # subject, language, resource_type, format, identifier, based_near,
     config.add_search_field('contributor') do |field|
       # solr_parameters hash are sent to Solr as ordinary url query params.
@@ -186,17 +184,6 @@ echnical_report_id'
       }
     end
 
-    config.add_search_field('publisher') do |field|
-      field.solr_parameters = {
-        :"spellcheck.dictionary" => "publisher"
-      }
-      solr_name = solr_name("publisher", :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
     config.add_search_field('date_created') do |field|
       field.solr_parameters = {
         :"spellcheck.dictionary" => "date_created"
@@ -219,6 +206,28 @@ echnical_report_id'
       }
     end
 
+
+    config.add_search_field('temporal') do |field|
+      field.solr_parameters = {
+        :"spellcheck.dictionary" => "temporal"
+      }
+      solr_name = solr_name("temporal", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('spatial') do |field|
+      field.solr_parameters = {
+        :"spellcheck.dictionary" => "spatial"
+      }
+      solr_name = solr_name("spatial", :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
     config.add_search_field('language') do |field|
       field.solr_parameters = {
         :"spellcheck.dictionary" => "language"
@@ -253,24 +262,25 @@ echnical_report_id'
       }
     end
 
-    config.add_search_field('identifier') do |field|
+    config.add_search_field('trid') do |field|
       field.include_in_advanced_search = false
       field.solr_parameters = {
-        :"spellcheck.dictionary" => "identifier"
+        :"spellcheck.dictionary" => "trid"
       }
-      solr_name = solr_name("id", :stored_searchable)
+      solr_name = solr_name("trid", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
       }
     end
 
-    config.add_search_field('based_near') do |field|
-      field.label = "Location"
+
+    config.add_search_field('ser') do |field|
+      field.include_in_advanced_search = false
       field.solr_parameters = {
-        :"spellcheck.dictionary" => "based_near"
+        :"spellcheck.dictionary" => "ser"
       }
-      solr_name = solr_name("based_near", :stored_searchable)
+      solr_name = solr_name("ser", :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

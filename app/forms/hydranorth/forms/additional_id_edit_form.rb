@@ -1,8 +1,8 @@
 module Hydranorth
   module Forms
-    class CstrEditForm < CstrPresenter
+    class AdditionalIdEditForm < AdditionalIdPresenter
       include HydraEditor::Form
-      self.required_fields = [:title, :creator, :tag, :rights, :technical_report_id]
+      self.required_fields = [:title, :creator, :tag, :rights, :trid, :ser]
 
       # This is required so that fields_for will draw a nested form.
       # See ActionView::Helpers#nested_attributes_association?
