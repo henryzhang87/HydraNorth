@@ -1,4 +1,21 @@
 Blacklight.onLoad(function() {
+
+  $("#generic_file_resource_type").click(function() {
+    console.log("click on resource types")
+    var seltype = $("#generic_file_resource_type").val()
+    console.log(seltype);
+    if (seltype == "Computing Science Technical Report") {
+      $(".form-group.generic_file_trid").show();
+      $(".form-group.generic_file_ser").hide();
+    } else if (seltype == "Structural Engineering Report") {
+      $(".form-group.generic_file_trid").hide();
+      $(".form-group.generic_file_ser").show();
+    } else {
+      $(".form-group.generic_file_trid").hide();
+      $(".form-group.generic_file_ser").hide();
+    }
+  })
+  
   function get_autocomplete_opts(field) {
     var autocomplete_opts = {
       minLength: 2,
