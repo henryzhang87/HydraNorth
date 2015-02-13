@@ -1,20 +1,51 @@
 Blacklight.onLoad(function() {
 
-  $("#generic_file_resource_type").click(function() {
-    console.log("click on resource types")
+  var selopt = $("#generic_file_resource_type").val();
+
+  if (selopt === undefined || selopt ===null){
+      $(".form-group.generic_file_trid").css({ opacity: 0 });
+      $(".form-group.generic_file_ser").css({ opacity: 0 });
+
+  }else {
+    id_based_on_resource_type;
+  }
+
+
+  function id_based_on_resource_type(){
     var seltype = $("#generic_file_resource_type").val()
-    console.log(seltype);
     if (seltype == "Computing Science Technical Report") {
-      $(".form-group.generic_file_trid").show();
-      $(".form-group.generic_file_ser").hide();
+      $(".form-group.generic_file_trid").css({ opacity: 1 });
+      $(".form-group.generic_file_ser").css({ opacity: 0 });
+      if ($("#generic_file_trid").val() == "no_trid"){
+        $("#generic_file_trid").val("");
+      }
     } else if (seltype == "Structural Engineering Report") {
-      $(".form-group.generic_file_trid").hide();
-      $(".form-group.generic_file_ser").show();
+      $(".form-group.generic_file_trid").css({ opacity: 0 });
+      $(".form-group.generic_file_ser").css({ opacity: 1 });
+      if ($("#generic_file_ser").val() == "no_ser"){
+        $("#generic_file_ser").val("");
+      }
     } else {
-      $(".form-group.generic_file_trid").hide();
-      $(".form-group.generic_file_ser").hide();
+      $(".form-group.generic_file_trid").css({ opacity: 0 });
+      $(".form-group.generic_file_ser").css({ opacity: 0 });
     }
-  })
+
+  }
+
+  function set_value_invisible_field(){
+
+    if ($(".form-group.generic_file_ser").css('opacity') == 0){
+      $("#generic_file_ser").val("no_ser");
+    }
+    if ($(".form-group.generic_file_trid").css('opacity') == 0){
+      $("#generic_file_trid").val("no_trid");
+    }
+
+
+  }
+
+  $("#generic_file_resource_type").click(id_based_on_resource_type);
+  $("#upload_submit").click(set_value_invisible_field());
   
   function get_autocomplete_opts(field) {
     var autocomplete_opts = {
