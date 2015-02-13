@@ -17,20 +17,17 @@ module Hydranorth
     end
     
     def presenter
-      case @generic_file[:resource_type]
-      when "Computing Science Technical Report"
-        Hydranorth::AdditionalIdPresenter.new(@generic_file)
-      when "Strutural Engineering Report"
+     
+      if (@generic_file[:resource_type].include?("Computing Science Technical Report") || @generic_file[:resource_type].include?("Strutural Engineering Report"))
         Hydranorth::AdditionalIdPresenter.new(@generic_file)
       else
         Hydranorth::GenericFilePresenter.new(@generic_file)
       end
-    end 
+    end
+
     def edit_form
-      case @generic_file[:resource_type]
-      when "Computing Science Technical Report"
-        Hydranorth::Forms::AdditonalIdEditForm.new(@generic_file)
-      when "Strutural Engineering Report"
+       
+      if (@generic_file[:resource_type].include?("Computing Science Technical Report")||@generic_file[:resource_type].include("Strutural Engineering Report"))
         Hydranorth::Forms::AdditionalIdEditForm.new(@generic_file) 
       else 
         Hydranorth::Forms::GenericFileEditForm.new(@generic_file)

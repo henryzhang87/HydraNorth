@@ -1,0 +1,7 @@
+<% record.temporal.each do |sp| %>
+  <span itemprop="temporal" itemscope itemtype="http://schema.org/Time">
+    <span itemprop="name"><%= link_to_facet(sp, Solrizer.solr_name("temporal", :facetable)) %></span>
+  </span>
+  <br />
+<% end %>
+

@@ -33,13 +33,14 @@
       <%= f.input :tag, as: :multi_value_with_help, input_html: { required: true } %>
 
       <%= f.input :creator, as: :multi_value_with_help, input_html: { required: true } %>
+      
+      <%= f.input :rights, as: :select_with_modal_help, collection: Sufia.config.cc_licenses,
+          input_html: { class: 'form-control', multiple: true, required: true }, include_blank: true %>
 
       <%= f.input :trid, as: :multi_value_with_help, input_html: { required: true } %>
 
       <%= f.input :ser, as: :multi_value_with_help, input_html: {required: true } %>
 
-      <%= f.input :rights, as: :select_with_modal_help, collection: Sufia.config.cc_licenses, 
-          input_html: { class: 'form-control', multiple: true, required: true }, include_blank: true %>
  
 
       <%= render "generic_files/rights_modal" %>
