@@ -1,3 +1,4 @@
+require 'resque/server'
 Hydranorth::Application.routes.draw do
   
   blacklight_for :catalog
@@ -9,6 +10,6 @@ Hydranorth::Application.routes.draw do
   mount Hydra::Collections::Engine => '/'
   mount Sufia::Engine => '/'
   mount HydraEditor::Engine => '/'
-
+  mount Resque::Server.new => '/resque'
   root to: "homepage#index"
 end

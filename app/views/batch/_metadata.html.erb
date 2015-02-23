@@ -10,6 +10,22 @@
           <div id="additional_title_clone">
             <%= f.text_field :title, name: "title[#{gen_f.id}][]", value: gen_f.label, class: 'form-control', required: true %>
           </div>
+
+          <% if @form[:resource_type].include? ("Computing Science Technical Report") %>
+
+            <%= f.input_label :trid, as: :multi_value_with_help, label: "Computing Science Technical Report ID #{index + 1}" %>
+            <div id="additional_title_clone">
+              <%= f.text_field :trid, name: "trid[#{gen_f.id}][]", class: 'form-control', required: true %>
+            </div>
+          <% end %>
+          <% if @form[:resource_type].include? ("Strutural Engineering Report") %>
+            <%= f.input_label :ser, as: :multi_value_with_help, label: "Strutural Engineering Report Number #{index + 1}" %>
+            <div id="additional_title_clone">
+              <%= f.text_field :ser, name: "ser[#{gen_f.id}][]", value: "", class: 'form-control', required: true %>
+            </div>
+
+          <% end %>
+
         </div>
       <% end %>
     </div>
@@ -35,13 +51,7 @@
       <%= f.input :creator, as: :multi_value_with_help, input_html: { required: true } %>
       
       <%= f.input :rights, as: :select_with_modal_help, collection: Sufia.config.cc_licenses,
-          input_html: { class: 'form-control', multiple: true, required: true }, include_blank: true %>
-
-      <%= f.input :trid, as: :multi_value_with_help, input_html: { required: true } %>
-
-      <%= f.input :ser, as: :multi_value_with_help, input_html: {required: true } %>
-
- 
+          input_html: { class: 'form-control', required: true }, include_blank: true %>
 
       <%= render "generic_files/rights_modal" %>
 
