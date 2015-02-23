@@ -1,6 +1,6 @@
 module Hydranorth
   module Forms
-    class BatchEditForm < GenericFileEditForm
+    class CstrBatchEditForm < CstrEditForm
     end
   end
 end
