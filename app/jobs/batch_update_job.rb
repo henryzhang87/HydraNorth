@@ -11,9 +11,6 @@ class BatchUpdateJob
   def initialize(login, batch_id, title, trid, ser, file_attributes, visibility)
     self.login = login
     self.title = title || {}
-    Rails.logger.debug "TITLE #{title}"
-    Rails.logger.debug "SELF.TITLE #{self.title}"
-    Rails.logger.debug "TRID #{trid}"
     self.trid = trid if trid.present?
     self.ser = ser if ser.present?
     self.file_attributes = file_attributes
@@ -24,14 +21,9 @@ class BatchUpdateJob
   end
 
   def run
-    log = Logger.new 'log/resque.log'
-    log.debug "foo bar"
     batch = Batch.find_or_create(self.batch_id)
     user = User.find_by_user_key(self.login)
-    Rails.logger.debug "RUN #{batch.inspect}"
-    Rails.logger.debug "RUN2 #{batch.generic_files.inspect}"
     batch.generic_files.each do |gf|
-      Rails.logger.debug "RUN3 #{gf.inspect}"
       update_file(gf, user)
     end
 
@@ -55,7 +47,6 @@ class BatchUpdateJob
     gf.trid = trid[gf.id] if (trid.present? && trid[gf.id])
     gf.ser = ser[gf.id] if (ser.present? && ser[gf.id])
     gf.visibility= visibility
-    Rails.logger.debug "GF.TRID #{gf.trid}"
     save_tries = 0
     begin
       gf.save!

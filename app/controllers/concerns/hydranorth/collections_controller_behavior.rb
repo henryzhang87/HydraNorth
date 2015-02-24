@@ -2,6 +2,7 @@ module Hydranorth
   module CollectionsControllerBehavior
   extend ActiveSupport::Concern
   include Sufia::CollectionsControllerBehavior
+
   protected
 
     def presenter_class

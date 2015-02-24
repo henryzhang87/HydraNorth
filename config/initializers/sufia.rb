@@ -72,6 +72,8 @@ Sufia.config do |config|
   config.owner_permission_levels = {
     "Edit" => "edit"
   }
+  config.cstr_collection_id = "9a9ca13a-eeba-431a-8782-8ce1bd64e6e5"
+  config.ser_collection_id = "5e43a8f1-e3e4-452a-82c9-cf8040686db6" 
 
   config.queue = Sufia::Resque::Queue
 
