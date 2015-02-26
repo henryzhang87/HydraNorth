@@ -31,6 +31,9 @@ class CatalogController < ApplicationController
 
   def self.trid_field
     solr_name('trid', :stored_sortable, type: :string)
+  def add_access_controls_to_solr_params(solr_parameters, user_parameters)
+    return [] if current_user && (current_user.admin?)
+    super
   end
 
   configure_blacklight do |config|
