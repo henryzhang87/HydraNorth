@@ -10,6 +10,9 @@ Hydranorth::Application.routes.draw do
   mount Hydra::Collections::Engine => '/'
   mount Sufia::Engine => '/'
   mount HydraEditor::Engine => '/'
-  mount Resque::Server.new => '/resque'
+
+  get 'users/:id/lock_access' => 'users#lock_access', as: 'lock_access_user'
+  get 'users/:id/unlock_access' => 'users#unlock_access', as: 'unlock_access_user'
+
   root to: "homepage#index"
 end
