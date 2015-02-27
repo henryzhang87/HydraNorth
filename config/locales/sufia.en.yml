@@ -161,8 +161,8 @@ en:
   simple_form:
     labels:
       generic_file:
-        trid:       "Computing Science Technical Report ID"
-        ser:		  "Structural Engineering Report Number"
+        technical_report_id:       "Technical Report ID"
+        ser_id:		  "SER Number"
         description:      "Abstract or Summary"
         tag:              "Keyword"
         date_created:     "Date Created"
@@ -181,8 +181,6 @@ en:
       generic_file:
         resource_type_html: "Pre-defined categories to describe the type of file content being uploaded, such as &quot;article&quot; or &quot;dataset.&quot;  More than one type may be selected."
         title: "A name for the file to aid in identifying it. Defaults to the file name, though a more descriptive title is encouraged. &lt;em&gt;This is a required field&lt;/em&gt;."
-        trid: "Computing Science Technical Report ID"
-        ser: "Structural Engineering Report Number" 
         tag: "Words or phrases you select to describe what the file is about. These are used to search for content. &lt;em&gt;This is a required field&lt;/em&gt;."
         subject: "Headings or index terms describing what the file is about; these &lt;em&gt;do&lt;/em&gt; need to conform to an existing vocabulary. Currently supports Library of Congress Subject Headings."
         creator_html: "The person or group responsible for the file being uploaded. Usually this is the author of the content. Personal names should be entered with the last name first, e.g. &quot;Smith, John.&quot; &lt;em&gt;This is a required field&lt;/em&gt;."

@@ -18,10 +18,10 @@
               <%= f.text_field :trid, name: "trid[#{gen_f.id}][]", class: 'form-control', required: true %>
             </div>
           <% end %>
-          <% if @form[:resource_type].include? ("Structural Engineering Report") %>
-            <%= f.input_label :ser, as: :multi_value_with_help, label: "Structural Engineering Report Number #{index + 1}" %>
+          <% if @form[:resource_type].include? ("Strutural Engineering Report") %>
+            <%= f.input_label :ser, as: :multi_value_with_help, label: "Strutural Engineering Report Number #{index + 1}" %>
             <div id="additional_title_clone">
-              <%= f.text_field :ser, name: "ser[#{gen_f.id}][]", class: 'form-control', required: true %>
+              <%= f.text_field :ser, name: "ser[#{gen_f.id}][]", value: "", class: 'form-control', required: true %>
             </div>
 
           <% end %>

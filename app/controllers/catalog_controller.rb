@@ -333,7 +333,7 @@ class CatalogController < ApplicationController
     config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
     config.add_sort_field "#{modified_field} desc", label: "date modified \u25BC"
     config.add_sort_field "#{modified_field} asc", label: "date modified \u25B2"
-    config.add_sort_field "#{trid_field} asc", label: "technical report id \u25B2" 
+
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
     config.spell_max = 5
