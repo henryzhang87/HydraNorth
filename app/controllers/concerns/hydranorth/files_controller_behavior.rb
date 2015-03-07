@@ -49,7 +49,7 @@ module Hydranorth
       else
          actor.create_metadata(params[:batch_id])
       end
-      if actor.create_content(file, file.original_filename, datastream_id)
+      if actor.create_content(file, file.original_filename, file_path, file.content_type)
         respond_to do |format|
           format.html {
             render 'jq_upload', formats: 'json', content_type: 'text/html'

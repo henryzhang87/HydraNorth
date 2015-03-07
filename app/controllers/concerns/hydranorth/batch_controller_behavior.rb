@@ -4,7 +4,6 @@ module Hydranorth
     include Sufia::BatchControllerBehavior
 
     included do
-      logger.debug "IncludedDo #{@batch.inspect}"
       class_attribute :edit_form_class, :cstr_edit_form_class, :ser_edit_form_class
       self.edit_form_class = Hydranorth::Forms::BatchEditForm
       self.cstr_edit_form_class = Hydranorth::Forms::CstrBatchEditForm
@@ -43,7 +42,6 @@ module Hydranorth
       elsif resource_type.include?"Structural Engineering Report"
         ser_edit_form_class.new(generic_file)
       else
-        logger.debug "InsideRegularForm" 
         edit_form_class.new(generic_file)
       end
 

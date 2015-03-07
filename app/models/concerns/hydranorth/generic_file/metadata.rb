@@ -4,25 +4,29 @@ module Hydranorth
   module GenericFile
     module Metadata
       extend ActiveSupport::Concern
-      include Sufia::GenericFile::Metadata
       included do
 
-        property :trid, predicate: ::DamsVocabulary.trid do |index|
+        property :license, predicate: ::RDF::DC.license, multiple: false do |index|
+          index.as :stored_searchable
+        end
+        property :trid, predicate: ::DamsVocabulary.trid, multiple: false do |index|
           index.as :stored_searchable, :sortable
         end
-        property :ser, predicate: ::DamsVocabulary.ser do |index|
+        property :ser, predicate: ::DamsVocabulary.ser, multiple: false do |index|
           index.as :stored_searchable, :sortable
         end
-
         
-        property :temporal, predicate: ::RDF::DC.temporal do |index|
+        property :temporal, predicate: ::RDF::DC.temporal, multiple:false do |index|
           index.as :stored_searchable, :facetable
         end
 
-        property :spatial, predicate: ::RDF::DC.spatial do |index|
+        property :spatial, predicate: ::RDF::DC.spatial, multiple:false do |index|
           index.as :stored_searchable, :facetable
 	end
 
+        property :is_version_of, predicate: ::RDF::DC.isVersionOf, multiple:false do |index|
+          index.as :stored_searchable
+        end
       end
 
     end
