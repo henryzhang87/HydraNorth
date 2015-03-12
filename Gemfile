@@ -48,6 +48,7 @@ end
 
 gem "devise"
 gem "devise-guests", "~> 0.3"
+gem "yaml_db"
 group :development, :test do
   gem "rspec-rails"
   gem "jettywrapper"
