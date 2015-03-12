@@ -1,0 +1,83 @@
+---
+domain_terms:
+  columns:
+  - id
+  - model
+  - term
+  records: 
+  - - 1
+    - generic_files
+    - language
+
+---
+local_authorities:
+  columns:
+  - id
+  - name
+  records: 
+  - - 1
+    - lc_languages
+
+---
+domain_terms_local_authorities:
+  columns:
+  - domain_term_id
+  - local_authority_id
+  records: 
+  - - 1
+    - 1
+
+---
+local_authority_entries:
+  columns:
+  - id
+  - local_authority_id
+  - label
+  - uri
+  records:
+  - - 1
+    - 1
+    - English
+    - http://id.loc.gov/vocabulary/iso639-2/eng
+  - - 2
+    - 1
+    - French
+    - http://id.loc.gov/vocabulary/iso639-2/fre
+  - - 3
+    - 1
+    - Spanish
+    - http://id.loc.gov/vocabulary/iso639-2/spa
+  - - 4
+    - 1
+    - Chinese
+    - http://id.loc.gov/vocabulary/iso639-2/chi
+  - - 5
+    - 1
+    - German
+    - http://id.loc.gov/vocabulary/iso639-2/ger
+  - - 6
+    - 1
+    - Italian
+    - http://id.loc.gov/vocabulary/iso639-2/ita
+  - - 7
+    - 1
+    - Russian
+    - http://id.loc.gov/vocabulary/iso639-2/rus
+  - - 8
+    - 1
+    - Ukrainian
+    - http://id.loc.gov/vocabulary/iso639-2/ukr
+  - - 9
+    - 1
+    - Japanese
+    - http://id.loc.gov/vocabulary/iso639-2/jpn
+  - - 10
+    - 1 
+    - No linguistic content
+    - http://id.loc.gov/vocabulary/iso639-2/zxx
+  - - 11
+    - 1
+    - Other
+    - other
+
+
